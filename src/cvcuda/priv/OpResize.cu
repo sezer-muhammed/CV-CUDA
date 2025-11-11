@@ -354,16 +354,14 @@ __global__ void CubicResize(SrcWrapper src, DstWrapper dst, int2 srcSize, int2 d
 
     if (dstCoord.y < dstSize.y && dstCoord.x < dstSize.x)
     {
-        float2 srcCoord = (cuda::DropCast<2>(dstCoord) + .5f) * scaleRatio - .5f;
-        int3   iSrcCoord{(int)floor(srcCoord.x), (int)floor(srcCoord.y), dstCoord.z};
-
-        float fx = srcCoord.x - iSrcCoord.x;
-        float fy = srcCoord.y - iSrcCoord.y;
-
-        fx = (iSrcCoord.x < 1 || iSrcCoord.x >= srcSize.x - 3) ? 0 : fx;
+        const float2 srcCoord = (cuda::DropCast<2>(dstCoord) + .5f) * scaleRatio - .5f;
+        int3         iSrcCoord{(int)floor(srcCoord.x), (int)floor(srcCoord.y), dstCoord.z};
 
         iSrcCoord.y = cuda::max(1, cuda::min(iSrcCoord.y, srcSize.y - 3));
         iSrcCoord.x = cuda::max(1, cuda::min(iSrcCoord.x, srcSize.x - 3));
+
+        const float fx = srcCoord.x - iSrcCoord.x;
+        const float fy = srcCoord.y - iSrcCoord.y;
 
         float wx[4];
         float wy[4];

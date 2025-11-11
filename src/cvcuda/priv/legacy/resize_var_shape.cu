@@ -27,7 +27,6 @@
 
 #include <cvcuda/cuda_tools/MathWrappers.hpp>
 #include <cvcuda/cuda_tools/SaturateCast.hpp>
-#include <cstdio>
 
 using namespace nvcv::legacy::cuda_op;
 using namespace nvcv::legacy::helpers;

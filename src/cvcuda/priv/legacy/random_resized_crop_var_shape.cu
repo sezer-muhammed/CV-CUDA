@@ -27,7 +27,6 @@
 
 #include <cmath>
 #include <random>
-#include <cstdio>
 
 using namespace nvcv;
 using namespace nvcv::legacy::cuda_op;

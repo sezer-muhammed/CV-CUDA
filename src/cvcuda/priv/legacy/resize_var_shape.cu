@@ -213,11 +213,6 @@ __global__ void resize_bicubic(cuda::ImageBatchVarShapeWrap<const T> src, cuda::
         cX[1] = ((A + 2.0f) * fx - (A + 3.0f)) * fx * fx + 1.0f;
         cX[2] = ((A + 2.0f) * (1.0f - fx) - (A + 3.0f)) * (1.0f - fx) * (1.0f - fx) + 1.0f;
         cX[3] = 1.0f - cX[0] - cX[1] - cX[2];
-        // Diagnostic print: only one thread to reduce spam
-        if (dst_x == 0 && dst_y == 0 && batch_idx == 0)
-        {
-            printf("[cvcuda diag v0.15.1] resize_bicubic kernel active (var-shape). sy=%d fy=%f sx=%d fx=%f\n", sy, fy, sx, fx);
-        }
 #pragma unroll
         for (int row = 0; row < 4; ++row)
         {

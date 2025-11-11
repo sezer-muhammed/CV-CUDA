@@ -218,10 +218,6 @@ __global__ void resize_cubic_v1(const SrcWrapper src, DstWrapper dst, const int 
         cX[1] = ((A + 2.0f) * fx - (A + 3.0f)) * fx * fx + 1.0f;
         cX[2] = ((A + 2.0f) * (1.0f - fx) - (A + 3.0f)) * (1.0f - fx) * (1.0f - fx) + 1.0f;
         cX[3] = 1.0f - cX[0] - cX[1] - cX[2];
-        if (dst_x == 0 && dst_y == 0 && batch_idx == 0)
-        {
-            printf("[cvcuda diag v0.15.1] resize_cubic_v1 kernel active (var-shape). sy=%d fy=%f sx=%d fx=%f top=%d left=%d\n", sy, fy, sx, fx, top, left);
-        }
 #pragma unroll
         for (int row = 0; row < 4; ++row)
         {
